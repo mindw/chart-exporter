@@ -48,10 +48,11 @@ def chart_exporter(
 
     collector = CustomCollector(tiller_host, tiller_port, tiller_timeout)
     REGISTRY.register(collector)
-    if one_shot:
+    if not one_shot:
         start_app(host=metrics_address, port=metrics_port)
     else:
-        print(generate_latest())
+        stats = generate_latest()
+        print(stats.decode())
 
 
 class CustomCollector:
@@ -64,11 +65,9 @@ class CustomCollector:
                     port=tiller_port,
                     timeout=tiller_timeout
                 )
+                break
             except Exception as e:
                 print(e)
-                continue
-            else:
-                break
         else:
             print(
                 f'Failed to connect to tiller on {tiller_host}:{tiller_port}')
@@ -77,7 +76,7 @@ class CustomCollector:
     def collect(self):
         all_releases = self.tiller.list_releases()
         metric = Metric(
-            'helm_release_info', 'Helm chart release information', 'gauge')
+            'helm_chart_releases', 'Helm chart release information', 'gauge')
         chart_count = Counter(
             [
                 (release.chart.metadata.name, release.chart.metadata.version)

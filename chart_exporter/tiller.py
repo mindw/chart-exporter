@@ -67,7 +67,9 @@ class Tiller:
         req = ListReleasesRequest(limit=RELEASE_LIMIT)
         release_list = stub.ListReleases(
             req, self.timeout, metadata=self.metadata)
-        releases = list(y.release for y in release_list)
+        releases = []
+        for y in release_list:
+            releases.extend(y.releases)
         return releases
 
     def list_charts(self):
