@@ -13,7 +13,7 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-from hapi.release import test_suite_pb2 as hapi_dot_release_dot_test__suite__pb2
+from chart_exporter.hapi.release import test_suite_pb2 as hapi_dot_release_dot_test__suite__pb2
 from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 
 

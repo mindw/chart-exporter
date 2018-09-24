@@ -3,7 +3,7 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import hapi.services.tiller_pb2 as hapi_dot_services_dot_tiller__pb2
+import chart_exporter.hapi.services.tiller_pb2 as hapi_dot_services_dot_tiller__pb2
 
 
 class ReleaseServiceStub(object):

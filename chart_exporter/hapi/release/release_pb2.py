@@ -13,10 +13,10 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-from hapi.release import hook_pb2 as hapi_dot_release_dot_hook__pb2
-from hapi.release import info_pb2 as hapi_dot_release_dot_info__pb2
-from hapi.chart import config_pb2 as hapi_dot_chart_dot_config__pb2
-from hapi.chart import chart_pb2 as hapi_dot_chart_dot_chart__pb2
+from chart_exporter.hapi.release import hook_pb2 as hapi_dot_release_dot_hook__pb2
+from chart_exporter.hapi.release import info_pb2 as hapi_dot_release_dot_info__pb2
+from chart_exporter.hapi.chart import config_pb2 as hapi_dot_chart_dot_config__pb2
+from chart_exporter.hapi.chart import chart_pb2 as hapi_dot_chart_dot_chart__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

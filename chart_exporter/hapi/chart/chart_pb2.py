@@ -13,9 +13,9 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-from hapi.chart import config_pb2 as hapi_dot_chart_dot_config__pb2
-from hapi.chart import metadata_pb2 as hapi_dot_chart_dot_metadata__pb2
-from hapi.chart import template_pb2 as hapi_dot_chart_dot_template__pb2
+from chart_exporter.hapi.chart import config_pb2 as hapi_dot_chart_dot_config__pb2
+from chart_exporter.hapi.chart import metadata_pb2 as hapi_dot_chart_dot_metadata__pb2
+from chart_exporter.hapi.chart import template_pb2 as hapi_dot_chart_dot_template__pb2
 from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 
 

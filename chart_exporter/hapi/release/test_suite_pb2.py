@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-from hapi.release import test_run_pb2 as hapi_dot_release_dot_test__run__pb2
+from chart_exporter.hapi.release import test_run_pb2 as hapi_dot_release_dot_test__run__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
