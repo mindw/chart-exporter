@@ -18,7 +18,7 @@ RUN set -ex; \
 COPY --from=builder /tmp/dist/* /tmp/
 
 RUN set -ex; \
-    pip3 --no-cache-dir --disable-pip-version-check install --no-compile -f /tmp coreos_aws_helper; \
+    pip3 --no-cache-dir --disable-pip-version-check install --no-compile -f /tmp chart_exporter; \
     find / \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -prune -exec rm -rf {} + ;\
     rm -rf /tmp/*
 
@@ -30,15 +30,8 @@ ENV LANG C.UTF-8
 # set output to unbuffered to get the logs faster into docker
 ENV PYTHONUNBUFFERED=0
 
-RUN adduser -S coreoshelper
-USER coreoshelper
+RUN adduser -S chartexporter
+USER chartexporter
 
-ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/coreos-aws-helper"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/chart_exporter"]
 
-FROM python:alpine
-COPY src/ /app
-WORKDIR /app
-RUN apk add --no-cache gcc linux-headers make musl-dev python-dev g++
-RUN pip install -r requirements.txt
-EXPOSE 9484
-CMD python ./kubedex.py
