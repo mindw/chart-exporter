@@ -8,7 +8,8 @@ FROM alpine:3.8
 
 LABEL maintainer="SaaS Platform Team <iot-saas-platform@arm.com>"
 
-ENV PACKAGES "bash curl openssl ca-certificates less tini su-exec python3"
+ENV PACKAGES "bash curl openssl less tini su-exec python3 yaml"
+ENV DEV_PACKAGES "linux-headers build-base python3-dev yaml-dev"
 
 RUN set -ex; \
     apk --no-cache add $PACKAGES; \
@@ -18,8 +19,11 @@ RUN set -ex; \
 COPY --from=builder /tmp/dist/* /tmp/
 
 RUN set -ex; \
+    apk --no-cache add $DEV_PACKAGES; \
+    pip3 --no-cache-dir --disable-pip-version-check install --no-compile cython; \
     pip3 --no-cache-dir --disable-pip-version-check install --no-compile -f /tmp chart_exporter; \
     find / \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -prune -exec rm -rf {} + ;\
+    apk del $DEV_PACKAGES;\
     rm -rf /tmp/*
 
 # http://bugs.python.org/issue19846
