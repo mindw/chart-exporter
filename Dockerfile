@@ -6,7 +6,7 @@ RUN python3 setup.py bdist_wheel
 
 FROM alpine:3.8
 
-LABEL maintainer="SaaS Platform Team <iot-saas-platform@arm.com>"
+LABEL maintainer="Gabi Davar <grizzly.nyo@gmail.com>"
 
 ENV PACKAGES "bash curl openssl less tini su-exec python3 yaml"
 ENV DEV_PACKAGES "linux-headers build-base python3-dev yaml-dev"
@@ -38,4 +38,3 @@ RUN adduser -S chartexporter
 USER chartexporter
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/chart_exporter"]
-
