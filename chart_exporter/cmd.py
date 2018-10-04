@@ -36,23 +36,42 @@ def start_app(host, port):
 @click.option('--tiller-host', default='127.0.0.1')
 @click.option('--tiller-port', default=44134)
 @click.option('--tiller-timeout', default=300)
-@click.option('--one-shot', default=False, is_flag=True)
+@click.option(
+    '--tls', default=False, is_flag=True, help='enable TLS for request')
+@click.option('--tls-ca-cert', help='path to tiller TLS CA certificate file')
+@click.option('--tls-cert', help='path to client TLS certificate file')
+@click.option(
+    '--tls-hostname',
+    help='the server name used to verify the hostname on the returned certificates from the server')  # noqa
+@click.option('--tls-key', help='path to client TLS certificate key file')
+@click.option(
+    '--tls-verify',
+    default=False,
+    is_flag=True,
+    help='enable TLS for request and verify remote'
+)
 def chart_exporter(
         metrics_address,
         metrics_port,
         tiller_host,
         tiller_port,
         tiller_timeout,
+        tls,
+        tls_ca_cert,
+        tls_cert,
+        tls_hostname,
+        tls_key,
+        tls_verify,
         one_shot
 ):
 
     collector = CustomCollector(tiller_host, tiller_port, tiller_timeout)
     REGISTRY.register(collector)
-    if not one_shot:
-        start_app(host=metrics_address, port=metrics_port)
-    else:
+    if one_shot:
         stats = generate_latest()
         print(stats.decode())
+    else:
+        start_app(host=metrics_address, port=metrics_port)
 
 
 class CustomCollector:
