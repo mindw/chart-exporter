@@ -21,9 +21,9 @@ Metrics look like this..
 
    # HELP helm_chart_info Helm chart information
    # TYPE helm_chart_info gauge
-   helm_chart_info{name="nginx-ingress",version="0.28.2"} 1.0
-   helm_chart_info{name="prometheus",version="7.0.3"} 1.0
-   helm_chart_info{name="grafana",version="1.14.6"} 1.0
+   helm_chart_info{name="nginx-ingress",version="0.28.2"} 7.0
+   helm_chart_info{name="prometheus",version="7.0.3"} 12.0
+   helm_chart_info{name="grafana",version="1.14.6"} 5.0
 
 This dynamically updates as you add and remove charts.
 
